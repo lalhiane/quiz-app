@@ -52,13 +52,11 @@ async function get_data(url, category = "programming") {
 
     }
 
-    console.log(shuffledQuestions[currentIndex]);
-
     create_quiz_markup(shuffledQuestions);
 
     check_answer();
 
-    generate_timer(questions, 5);
+    // generate_timer(questions, 5);
 
 }
 
@@ -140,7 +138,10 @@ function generate_categories(categories, questions) {
 
         if (index === 0) spanEl.classList.add("active");
 
-        spanEl.innerHTML = `${category}<i class="${classes[index]}"></i>`;
+        spanEl.innerHTML = `
+            <h6>${category}</h6>
+            <i class="${classes[index]}"></i>
+        `;
 
         document.querySelector(".categories-part").appendChild(spanEl);
 
