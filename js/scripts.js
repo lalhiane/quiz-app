@@ -56,7 +56,7 @@ async function get_data(url, category = "programming") {
 
     check_answer();
 
-    // generate_timer(questions, 5);
+    generate_timer(questions, 5);
 
 }
 
