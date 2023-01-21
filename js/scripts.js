@@ -1,3 +1,5 @@
+const URL = "https://raw.githubusercontent.com/lalhiane/quiz-app/main/data/data.json";
+
 const quizDesc = document.getElementById("quiz-desc");
 
 const bullets = document.querySelector(".bullets");
@@ -56,11 +58,11 @@ async function get_data(url, category = "programming") {
 
     check_answer();
 
-    // generate_timer(questions, 5);
+    generate_timer(questions, 5);
 
 }
 
-get_data("../data/data.json");
+get_data(URL);
 
 function create_quiz_markup(questions) {
 
@@ -128,7 +130,7 @@ function generate_categories(categories, questions) {
 
             for_generate_bullets = true;
 
-            get_data("../data/data.json", category);
+            get_data(URL, category);
 
             outerCategory = category;
 
@@ -174,7 +176,7 @@ function generate_quiz(questions) {
     
     else generate_results(questions);
 
-    get_data("../data/data.json", outerCategory);
+    get_data(URL, outerCategory);
 
     bullets.querySelectorAll("li")[currentIndex].classList.add("active");
 
