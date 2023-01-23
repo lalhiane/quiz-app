@@ -1,5 +1,5 @@
 {
-    "programming": [
+    "html": [
         {
             "title": "Why We Use <br> Element",
             "answer_1": "To Make Text Bold",
@@ -23,14 +23,6 @@
             "answer_3": "Customizing It With F-W Prop In CSS",
             "answer_4": "All Answers Is Right",
             "right_answer": "All Answers Is Right"
-        },
-        {
-            "title": "What Is The Right Hierarchy For Creating Part Of Page",
-            "answer_1": "<h2> - <p> - <h1> - <p> - <h3> - <p> - <img>",
-            "answer_2": "<h1> - <p> - <h3> - <p> - <h2> - <p> - <img>",
-            "answer_3": "<h2> - <p> - <h3> - <p> - <h1> - <p> - <img>",
-            "answer_4": "All Solutions Is Wrong",
-            "right_answer": "All Solutions Is Wrong"
         },
         {
             "title": "How Can We Include External Page Inside Our HTML Page",
@@ -73,86 +65,184 @@
             "right_answer": "All Is Right"
         }
     ],
-    "english": [
+    "css": [
         {
-            "title": "Clearly ... is a synonym of Tentative.",
-            "answer_1": "Final",
-            "answer_2": "Provisional",
-            "answer_3": "Unreliable",
-            "answer_4": "Current",
-            "right_answer": "Provisional"
+            "title": "What does CSS stand for?",
+            "answer_1": "Colorful Style Sheets",
+            "answer_2": "Computer Style Sheets",
+            "answer_3": "Creative Style Sheets",
+            "answer_4": "Cascading Style Sheets",
+            "right_answer": "Cascading Style Sheets"
         },
         {
-            "title": "Clearly ... is a synonym of Finish.",
-            "answer_1": "Begin",
-            "answer_2": "Terminate",
-            "answer_3": "End",
-            "answer_4": "Conclude",
-            "right_answer": "Conclude"
+            "title": "What is the correct HTML for referring to an external style sheet?",
+            "answer_1": "<stylesheet>mystyle.css</stylesheet>",
+            "answer_2": "<link rel=\"stylesheet\" type=\"text/css\" href=\"mystyle.css\">",
+            "answer_3": "<style src=\"mystyle.css\">",
+            "answer_4": "All Is Right",
+            "right_answer": "<link rel=\"stylesheet\" type=\"text/css\" href=\"mystyle.css\">"
         },
         {
-            "title": "Clearly ... is a synonym of Sick.",
-            "answer_1": "Patient",
-            "answer_2": "All",
-            "answer_3": "Well",
-            "answer_4": "Sorry",
-            "right_answer": "Well"
+            "title": "Where in an HTML document is the correct place to refer to an external style sheet?",
+            "answer_1": "At the end of the document",
+            "answer_2": "In the <body> section",
+            "answer_3": "In the <head> section",
+            "answer_4": "All Is Right",
+            "right_answer": "In the <head> section"
         },
         {
-            "title": "Clearly ... is a synonym of High.",
-            "answer_1": "Tall",
-            "answer_2": "Low",
-            "answer_3": "Important",
-            "answer_4": "Powerful",
-            "right_answer": "Low"
+            "title": "Which HTML tag is used to define an internal style sheet?",
+            "answer_1": "<style>",
+            "answer_2": "<css>",
+            "answer_3": "<script>",
+            "answer_4": "All Is Right",
+            "right_answer": "<style>"
         },
         {
-            "title": "Clearly ... is a synonym of Fortune.",
-            "answer_1": "Faith",
-            "answer_2": "Religion",
-            "answer_3": "Belief",
-            "answer_4": "Luck",
-            "right_answer": "Luck"
+            "title": "Which HTML attribute is used to define inline styles?",
+            "answer_1": "font",
+            "answer_2": "style",
+            "answer_3": "styles",
+            "answer_4": "class",
+            "right_answer": "style"
         },
         {
-            "title": "Clearly ... is a synonym of Serene.",
-            "answer_1": "Calm",
-            "answer_2": "Weak",
-            "answer_3": "Delicate",
-            "answer_4": "Solemn",
-            "right_answer": "Calm"
+            "title": "Which is the correct CSS syntax?",
+            "answer_1": "body {color: black;}",
+            "answer_2": "{body;color:black;}",
+            "answer_3": "body:color=black;",
+            "answer_4": "{body:color=black;}",
+            "right_answer": "body {color: black;}"
         },
         {
-            "title": "Clearly ... is a synonym of Carnal.",
-            "answer_1": "Imaginary",
-            "answer_2": "Visionary",
-            "answer_3": "Sensuous",
-            "answer_4": "Spiritual",
-            "right_answer": "Spiritual"
+            "title": "How do you insert a comment in a CSS file?",
+            "answer_1": "// this is a comment //",
+            "answer_2": "\" this is a comment",
+            "answer_3": "/* this is a comment /*",
+            "answer_4": "// this is a comment",
+            "right_answer": "/* this is a comment /*"
         },
         {
-            "title": "Clearly ... is a synonym of Rebate.",
-            "answer_1": "Loss",
-            "answer_2": "Compensation",
-            "answer_3": "Discount",
-            "answer_4": "Refund",
-            "right_answer": "Discount"
+            "title": "Which property is used to change the background color?",
+            "answer_1": "bg-color",
+            "answer_2": "color",
+            "answer_3": "background-color",
+            "answer_4": "All Is Right",
+            "right_answer": "background-color"
         },
         {
-            "title": "Clearly ... is a synonym of Range.",
-            "answer_1": "Standing",
-            "answer_2": "Grade",
-            "answer_3": "Level",
-            "answer_4": "Expanse",
-            "right_answer": "Expanse"
+            "title": "How do you add a background color for all <h1> elements?",
+            "answer_1": "h1.all {background-color:#FFFFFF;}",
+            "answer_2": "h1 {background-color:#FFFFFF;}",
+            "answer_3": "all.h1 {background-color:#FFFFFF;}",
+            "answer_4": "All Is Right",
+            "right_answer": "h1 {background-color:#FFFFFF;}"
         },
         {
-            "title": "Clearly ... is a synonym of Obtuse.",
-            "answer_1": "Blunt",
-            "answer_2": "Distant",
-            "answer_3": "Excessive",
-            "answer_4": "Vague",
-            "right_answer": "Blunt"
+            "title": "Which CSS property is used to change the text color of an element?",
+            "answer_1": "color",
+            "answer_2": "fg-color",
+            "answer_3": "text-color",
+            "answer_4": "All Is Right",
+            "right_answer": "color"
+        }
+    ],
+    "javascript": [
+        {
+            "title": "Inside which HTML element do we put the JavaScript?",
+            "answer_1": "<js>",
+            "answer_2": "<javascript>",
+            "answer_3": "<script>",
+            "answer_4": "<settings>",
+            "right_answer": "<script>"
+        },
+        {
+            "title": "What is the correct JavaScript syntax to change the content of the HTML element: <p id=\"demo\">This is a demonstration.</p>",
+            "answer_1": "#demo.innerHTML = \"Hello World\";",
+            "answer_2": "document.getElementByName(\"p\").innerHTML = \"Hello World!\";",
+            "answer_3": "document.getElementById(\"demo\").innerHTML = \"Hello World!\";",
+            "answer_4": "document.getElement(\"p\").innerHTML = \"Hello World!\";",
+            "right_answer": "document.getElementById(\"demo\").innerHTML = \"Hello World!\";"
+        },
+        {
+            "title": "Where is the correct place to insert a JavaScript?",
+            "answer_1": "The <head> section",
+            "answer_2": "The <body> section",
+            "answer_3": "Both the <head> section and the <body> section are correct",
+            "answer_4": "Non Of One",
+            "right_answer": "Both the <head> section and the <body> section are correct"
+        },
+        {
+            "title": "What is the correct syntax for referring to an external script called \"xxx.js\"?",
+            "answer_1": "<script name=\"xxx.js\">",
+            "answer_2": "<script src=\"xxx.js\">",
+            "answer_3": "<script href=\"xxx.js\">",
+            "answer_4": "All Is Right",
+            "right_answer": "<script src=\"xxx.js\">"
+        },
+        {
+            "title": "How do you write \"Hello World\" in an alert box?",
+            "answer_1": "alert(\"Hello World\");",
+            "answer_2": "msg(\"Hello World\");",
+            "answer_3": "alertBox(\"Hello World\");",
+            "answer_4": "msgBox(\"Hello World\");",
+            "right_answer": "alert(\"Hello World\");"
+        },
+        {
+            "title": "How do you create a function in JavaScript?",
+            "answer_1": "function:myFunction()",
+            "answer_2": "function = myFunction()",
+            "answer_3": "function myFunction()",
+            "answer_4": "All Is Right",
+            "right_answer": "function myFunction()"
+        },
+        {
+            "title": "How do you call a function named \"myFunction\"?",
+            "answer_1": "myFunction()",
+            "answer_2": "call myFunction()",
+            "answer_3": "call function myFunction()",
+            "answer_4": "All Is Right",
+            "right_answer": "myFunction()"
+        },
+        {
+            "title": "How to write an IF statement in JavaScript?",
+            "answer_1": "if i = 5 then",
+            "answer_2": "if (i == 5)",
+            "answer_3": "if i == 5 then",
+            "answer_4": "if i == 5",
+            "right_answer": "if (i == 5)"
+        },
+        {
+            "title": "How to write an IF statement for executing some code if \"i\" is NOT equal to 5?",
+            "answer_1": "if (i != 5)",
+            "answer_2": "if i =! 5 then",
+            "answer_3": "if i <> 5",
+            "answer_4": "if (i <> 5)",
+            "right_answer": "if (i != 5)"
+        },
+        {
+            "title": "How does a WHILE loop start?",
+            "answer_1": "while i = 1 to 10",
+            "answer_2": "while (i <= 10)",
+            "answer_3": "while (i <= 10; i++)",
+            "answer_4": "All Is Right",
+            "right_answer": "while (i <= 10)"
+        },
+        {
+            "title": "How does a FOR loop start?",
+            "answer_1": "for (i <= 5; i++)",
+            "answer_2": "for (i = 0; i <= 5)",
+            "answer_3": "for (i = 0; i <= 5; i++)",
+            "answer_4": "for i = 1 to 5",
+            "right_answer": "for (i = 0; i <= 5; i++)"
+        },
+        {
+            "title": "How can you add a comment in a JavaScript?",
+            "answer_1": "<!-- This is a comment -->",
+            "answer_2": "// This is a comment",
+            "answer_3": "' This is a comment",
+            "answer_4": "# This is a comment",
+            "right_answer": "// This is a comment"
         }
     ]
 }

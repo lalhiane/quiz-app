@@ -9,17 +9,19 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <div class="container">
-        <aside class="categories-part"></aside>
-        <div class="quiz-part">
-            <div id="quiz-desc"></div>
-            <div class="quiz-tools">
-                <ul class="bullets"></ul>
-                <span class="timer">00:05</span>
+    <div class="container" id="container">
+        <div class="row">
+            <h2 class="title">Test Your Programming Language Level!</h2>
+            <div class="select-box">
+                <i class="fas fa-chevron-down icon"></i>
+                <select class="select-lang" id="select-lang"></select>
             </div>
         </div>
-        <div class="outer-popup">
-        </div>
+        <h4>Good luck!</h4>
+        <button class="btn" id="start-btn">
+            Start The JavaScript Quiz
+            <i class="fas fa-chevron-right"></i>
+        </button>
     </div>
     <script src="js/scripts.js"></script>
 </body>

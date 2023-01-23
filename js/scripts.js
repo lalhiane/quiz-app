@@ -1,30 +1,20 @@
 const URL = "https://raw.githubusercontent.com/lalhiane/quiz-app/main/data/data.json";
 
-const quizDesc = document.getElementById("quiz-desc");
+const container = document.getElementById("container");
 
-const bullets = document.querySelector(".bullets");
+const selectLang = document.getElementById("select-lang");
 
-const timerEl = document.querySelector(".timer");
-
-const outerPopup = document.querySelector(".outer-popup");
+const startBtn = document.getElementById("start-btn");
 
 let currentIndex = 0;
 
 let rightAnswers = 0;
 
-let wrongAnswers = 0;
+let checkIndex = 0;
 
 let interval;
 
-let for_generate_categories = true;
-
-let for_generate_bullets = true;
-
-var outerCategory = "programming";
-
-let shuffledQuestions;
-
-async function get_data(url, category = "programming") {
+async function generate_data(url) {
 
     const response = await fetch(url);
 
@@ -32,45 +22,95 @@ async function get_data(url, category = "programming") {
 
     const categories = Object.keys(quiz);
 
-    const questions = quiz[category];
+    for (let i = 0; i < categories.length; i++) {
 
-    if (for_generate_bullets) {
+        const option = document.createElement("option");
 
-        shuffledQuestions = questions.sort(() => Math.random() - 0.5);
+        option.value = categories[i];
 
-        generate_bullets(shuffledQuestions);
+        option.innerText = categories[i];
 
-        for_generate_bullets = false;
-
-    }
-
-    if (for_generate_categories) {
-
-        generate_categories(categories, shuffledQuestions);
-
-        for_generate_categories = false;
+        selectLang.appendChild(option);
 
     }
 
-    create_quiz_markup(shuffledQuestions);
+    let category;
 
-    check_answer();
+    startBtn.addEventListener("click", function () {
 
-    generate_timer(questions, 5);
+        category = selectLang.value;
+
+        container.innerHTML = "";
+    
+        create_quiz_markup(category, quiz[category]);
+
+        choose_answer();
+
+        generate_timer(quiz[category], 5);
+    
+    });
+
+    document.addEventListener("click", function (e) {
+
+        if (
+            
+            e.target.classList.contains("submit-btn") || 
+
+            e.target.classList.contains("submit-icon")
+        
+        ) {
+
+            e.preventDefault();
+
+            check_answer(quiz[category]);
+
+            clearInterval(interval);
+
+            if (currentIndex < quiz[category].length - 1) {
+                
+                currentIndex++;
+
+                create_quiz_markup(category, quiz[category]);
+
+                choose_answer();
+
+                generate_timer(quiz[category], 5);
+
+            } else {
+
+                generate_result(quiz[category]);
+
+            }
+
+            if (currentIndex < quiz[category].length) checkIndex;
+
+        }
+
+    });
 
 }
 
-get_data(URL);
+generate_data(URL);
 
-function create_quiz_markup(questions) {
+function create_quiz_markup(category, questions) {
 
-    quizDesc.innerHTML = "";
+    container.innerHTML = "";
 
     const target = questions[currentIndex];
 
-    const quizForm = document.createElement("div");
+    const titleEl = document.createElement("h2");
 
-    quizForm.className = "quiz-form";
+    titleEl.className = "title";
+
+    titleEl.innerText = `${category} Quiz`;
+
+    container.appendChild(titleEl);
+
+    const quetionCount = document.createElement("h4");
+
+    quetionCount.innerText = `Question ${currentIndex + 1} of ${questions.length}`;
+
+    container.appendChild(quetionCount);
 
     const quetionTitle = document.createElement("h3");
 
@@ -78,123 +118,78 @@ function create_quiz_markup(questions) {
 
     quetionTitle.innerText = target.title;
 
-    quizForm.appendChild(quetionTitle);
-    
-    let answers = ["answer_1", "answer_2", "answer_3", "answer_4"];
+    container.appendChild(quetionTitle);
 
-    let shuffledAnswers = answers.sort(() => Math.random() - 0.5);
+    const quizForm = document.createElement("form");
 
-    for (let i = 0; i < shuffledAnswers.length; i++) {
+    quizForm.action = "#";
+
+    quizForm.className = "quiz-form";
+
+    const answers = ["answer_1", "answer_2", "answer_3", "answer_4"];
+
+    answers.sort(() => Math.random() - 0.5);
+
+    for (let i = 0; i < answers.length; i++) {
+
+        const label = document.createElement("label");
+
+        label.for = `input-${i + 1}`;
+
+        label.innerHTML = `
+
+            <input type="radio" id="input-${i + 1}" name="sameName">
+            
+            <span class="checkmark"></span>
+
+        `;
         
-        const answerBox = document.createElement("div");
+        label.appendChild(document.createTextNode(target[answers[i]]));
 
-        answerBox.className = "answer-box";
+        label.setAttribute("data-answer", target[answers[i]]);
 
-        answerBox.innerText = target[shuffledAnswers[i]];
-
-        quizForm.appendChild(answerBox);
+        quizForm.appendChild(label);
 
     }
 
+    const rowEl = document.createElement("div");
+
+    rowEl.className = "row";
+
     const submitBtn = document.createElement("button");
 
-    submitBtn.className = "submit-btn disabled";
+    submitBtn.className = "btn submit-btn disabled";
 
-    submitBtn.innerText = "Submit Answer";
+    submitBtn.innerHTML = "Next <i class=\"fas fa-chevron-right submit-icon\"></i>";
 
-    submitBtn.addEventListener("click", () => generate_quiz(questions));
+    rowEl.appendChild(submitBtn);
 
-    quizForm.appendChild(submitBtn);
+    const timerEl = document.createElement("div");
 
-    quizDesc.appendChild(quizForm);
+    timerEl.className = "timer";
 
-}
+    timerEl.innerText = "00:05";
 
-const classes = ["fas fa-code", "fas fa-language"]
+    rowEl.appendChild(timerEl);
 
-function generate_categories(categories, questions) {
+    quizForm.appendChild(rowEl);
 
-    categories.forEach((category, index) => {
-
-        const spanEl = document.createElement("span");
-
-        spanEl.addEventListener("click", () => {
-
-            const AllSpans = document.querySelectorAll(".categories-part span");
-
-            AllSpans.forEach(span => span.classList.remove("active"));
-
-            spanEl.classList.add("active");
-
-            for_generate_bullets = true;
-
-            get_data(URL, category);
-
-            outerCategory = category;
-
-            generate_bullets(questions);
-
-        });
-
-        if (index === 0) spanEl.classList.add("active");
-
-        spanEl.innerHTML = `
-            <h6>${category}</h6>
-            <i class="${classes[index]}"></i>
-        `;
-
-        document.querySelector(".categories-part").appendChild(spanEl);
-
-    });
+    container.appendChild(quizForm);
 
 }
 
-function generate_quiz(questions) {
+function choose_answer() {
 
-    document.querySelectorAll(".categories-part span").forEach(span => {
+    const answersBoxes = document.querySelectorAll("label");
 
-        span.classList.add("disabled");
+    answersBoxes.forEach(box => {
 
-    });
+        box.addEventListener("click", function () {
 
-    clearInterval(interval);
+            answersBoxes.forEach(box => box.classList.remove("active"));
 
-    timerEl.innerHTML = "00:05";
+            box.classList.add("active");
 
-    const targetBox = document.querySelector(".answer-box.active");
-
-    if (targetBox !== null) {
-
-        const rightAnswer = questions[currentIndex].right_answer
-
-        if (targetBox.innerText === rightAnswer) rightAnswers++;
-        
-        else wrongAnswers++;
-
-    } else wrongAnswers++;
-
-    if (currentIndex < questions.length - 1) currentIndex++;
-    
-    else generate_results(questions);
-
-    get_data(URL, outerCategory);
-
-    bullets.querySelectorAll("li")[currentIndex].classList.add("active");
-
-}
-
-function check_answer() {
-
-    const answerBoxes = document.querySelectorAll(".answer-box");
-
-    answerBoxes.forEach(box => {
-
-        box.addEventListener("click", (e) => {
-    
-            answerBoxes.forEach(box => box.classList.remove("active"));
-    
-            e.target.classList.add("active");
-    
             document.querySelector(".submit-btn").classList.remove("disabled");
 
         });
@@ -203,26 +198,63 @@ function check_answer() {
 
 }
 
-function generate_bullets(questions) {
+function check_answer(questions) {
 
-    bullets.innerHTML = "";
+    const targetEl = document.querySelector("label.active");
 
-    for (let i = 0; i < questions.length; i++) {
+    if (targetEl !== null) {
 
-        const bullet = document.createElement("li");
+        const choosed_answer = targetEl.getAttribute("data-answer");
 
-        if (i === 0) bullet.className = "active";
+        if (questions[currentIndex].right_answer === choosed_answer) {
+    
+            rightAnswers++;
+    
+        }
 
-        bullet.innerText = i + 1;
-
-        bullets.appendChild(bullet);
     }
+
+}
+
+function generate_result(questions) {
+
+    container.innerHTML = "";
+
+    container.classList.add("has-result");
+
+    const resultEl = document.createElement("p");
+
+    resultEl.className = "result";
+
+    const result = `You Have Got ${rightAnswers} From ${questions.length}`;
+
+    if (rightAnswers <= Math.ceil(questions.length / 2)) {
+
+        resultEl.innerText = `Check Your Level, ${result}`;
+
+    } else {
+
+        resultEl.innerText = `Congratulation, ${result}`;
+
+    }
+
+    container.appendChild(resultEl);
+
+    const reloadBtn = document.createElement("button");
+
+    reloadBtn.className = "btn";
+
+    reloadBtn.innerText = "Reload";
+
+    reloadBtn.addEventListener("click", () => location.reload());
+    
+    container.appendChild(reloadBtn);
 
 }
 
 function generate_timer(questions, duration) {
 
-    if (currentIndex < questions.length - 1) {
+    if (checkIndex < questions.length) {
 
         let minutes, seconds;
 
@@ -235,6 +267,8 @@ function generate_timer(questions, duration) {
             minutes = minutes < 10  ? `0${minutes}` : minutes;
     
             seconds = seconds < 10  ? `0${seconds}` : seconds;
+
+            const timerEl = document.querySelector(".timer");
     
             timerEl.innerHTML = `${minutes}:${seconds}`;
     
@@ -249,39 +283,5 @@ function generate_timer(questions, duration) {
         }, 1000);
 
     }
-
-}
-
-function generate_results(questions) {
-
-    outerPopup.classList.add("outer-show");
-
-    const innerPopup = document.createElement("div");
-
-    innerPopup.className = "inner-popup";
-
-    const result = `You Have Got ${rightAnswers} From ${questions.length}`
-
-    if (rightAnswers <= Math.ceil(questions.length / 2)) {
-
-        innerPopup.innerText = `Check Your Level, ${result}`;
-
-    } else {
-
-        innerPopup.innerText = `Congratulation, ${result}`;
-
-    }
-
-    const closePopup = document.createElement("i");
-
-    closePopup.className = "fa fa-times close-popup";
-
-    closePopup.addEventListener("click", () => window.location.reload());
-
-    innerPopup.appendChild(closePopup);
-
-    window.setTimeout(() => innerPopup.classList.add("inner-show"), 300);
-
-    outerPopup.appendChild(innerPopup);
 
 }
