@@ -46,7 +46,7 @@ async function generate_data(url) {
 
         choose_answer();
 
-        generate_timer(quiz[category], 5);
+        generate_timer(quiz[category], 10);
     
     });
 
@@ -74,7 +74,7 @@ async function generate_data(url) {
 
                 choose_answer();
 
-                generate_timer(quiz[category], 5);
+                generate_timer(quiz[category], 10);
 
             } else {
 
@@ -168,7 +168,7 @@ function create_quiz_markup(category, questions) {
 
     timerEl.className = "timer";
 
-    timerEl.innerText = "00:05";
+    timerEl.innerText = "00:10";
 
     rowEl.appendChild(timerEl);
 
