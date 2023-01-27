@@ -1,4 +1,6 @@
-const URL = "https://raw.githubusercontent.com/lalhiane/quiz-app/main/data/data.json";
+const URL = "../data/data.json";
+
+// https://raw.githubusercontent.com/lalhiane/quiz-app/main/data/data.json
 
 const container = document.getElementById("container");
 
